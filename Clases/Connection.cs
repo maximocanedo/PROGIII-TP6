@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace TrabajoPractico6.Clases {
+    public class Response {
+        public bool ErrorFound { get; set; }
+        public string Message { get; set; }
+        public string Details { get; set; }
+        public object ObjectReturned { get; set; }
+        public int AffectedRows { get; set; }
+        public Exception Exception { get; set; }
+        public Response() {
+            this.ErrorFound = false;
+            this.Message = "";
+            this.Details = "";
+            this.ObjectReturned = null;
+            this.AffectedRows = 0;
+            this.Exception = null;
+        }
+
+    }
+    public class Connection {
+        public static class Database {
+            public static string Neptuno { get { return "Neptuno"; } }
+            public static string BDSucursales { get { return "BDSucursales"; } }
+            public static string Libreria { get { return "Libreria"; } }
+            public static string Viajes { get { return "Viajes"; } }
+        }
+        
+        public string DatabaseName { get; set; }
+        public Response Response = new Response() { }; 
+        public Connection(string DatabaseName) {
+            this.DatabaseName = DatabaseName;
+        }
+        public SqlConnection OpenConnection(string DatabaseName) {
+            SqlConnection con;
+            try {
+                string r = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=" + this.DatabaseName + ";Integrated Security=True";
+                con = new SqlConnection(r);
+
+            } catch(SqlException err) {
+                this.Response.ErrorFound = true;
+                this.Response.Message = "Error al conectar al servidor";
+                this.Response.Details = err.Message;
+                this.Response.Exception = err;
+                return null;
+            }
+            return con;
+        }
+        /// <summary>
+        /// Realiza una consulta en la base de datos y recolecta datos obtenidos. 
+        /// Sólo para consultas que devuelvan tablas con datos.
+        /// </summary>
+        /// <param name="query">La consulta a ejecutar</param>
+        /// <param name="parameters">Parámetros de la consulta.</param>
+        /// <returns>Objeto Response con el resultado de la operación y los datos obtenidos.</returns>
+        public Response FetchData(string query, Dictionary<string, object> parameters = null) {
+            DataSet dataSet = new DataSet();
+            try {
+                using (SqlConnection con = OpenConnection(this.DatabaseName)) {
+                    using (SqlCommand command = new SqlCommand(query, con)) {
+                        if (parameters != null) {
+                            foreach (KeyValuePair<string, object> parameter in parameters) {
+                                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                            }
+                        }
+                        using (SqlDataAdapter dataAdapter = new SqlDataAdapter(command)) {
+                            dataAdapter.Fill(dataSet, "root");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                return new Response() {
+                    ErrorFound = true,
+                    Message = "Error al obtener datos de la base de datos. ",
+                    Details = ex.ToString(),
+                    Exception = ex
+                };
+            }
+            return new Response() {
+                ObjectReturned = dataSet
+            };
+        }
+        /// <summary>
+        /// Realiza una consulta en la base de datos. 
+        /// Sólo consultas que actualizan, eliminan o agregan registros.
+        /// </summary>
+        /// <param name="query">La consulta a ejecutar.</param>
+        /// <param name="parameters">Parámetros de la consulta.</param>
+        /// <returns>Objeto Response con el resultado de la transacción.</returns>
+        public Response RunTransaction(string query, Dictionary<string, object> parameters = null) {
+            try {
+                using (SqlConnection con = OpenConnection(this.DatabaseName)) {
+                    using (SqlCommand command = new SqlCommand(query, con)) {
+                        if (parameters != null) {
+                            foreach (KeyValuePair<string, object> parameter in parameters) {
+                                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                            }
+                        }
+                        con.Open();
+                        int filasAfectadas = command.ExecuteNonQuery();
+                        return new Response() {
+                            AffectedRows = filasAfectadas
+                        };
+                    }
+                }
+            }
+            catch (Exception ex) {
+                return new Response() {
+                    ErrorFound = true,
+                    Message = "Error al realizar la transacción en la base de datos. ",
+                    Details = ex.ToString(),
+                    Exception = ex,
+                    AffectedRows = 0
+                };
+            }
+        }
+
+    }
+}

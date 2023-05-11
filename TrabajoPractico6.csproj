@@ -67,9 +67,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PrimerEjercicio\PrimerEjercicio.aspx" />
+    <Content Include="Recursos\index.css" />
+    <Content Include="Recursos\index.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Connection.cs" />
+    <Compile Include="Clases\Producto.cs" />
+    <Compile Include="PrimerEjercicio\PrimerEjercicio.aspx.cs">
+      <DependentUpon>PrimerEjercicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrimerEjercicio\PrimerEjercicio.aspx.designer.cs">
+      <DependentUpon>PrimerEjercicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +94,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Clases\" />
     <Folder Include="Inicio\" />
-    <Folder Include="PrimerEjercicio\" />
-    <Folder Include="Recursos\" />
     <Folder Include="SegundoEjercicio\" />
   </ItemGroup>
   <PropertyGroup>
