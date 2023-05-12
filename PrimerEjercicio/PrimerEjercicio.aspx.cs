@@ -28,9 +28,6 @@ namespace TrabajoPractico6.PrimerEjercicio {
         }
 
         protected void gvProductos_RowEditing(object sender, GridViewEditEventArgs e) {
-            //Producto p = new Producto();
-            //GridViewRow i = gvProductos.Rows[e.NewEditIndex];
-            //p.SetValuesFromEditableRow();
             gvProductos.EditIndex = e.NewEditIndex;
             CargarDatos();
         }
@@ -86,6 +83,18 @@ namespace TrabajoPractico6.PrimerEjercicio {
                 gvProductos.PageSize = filasPorPaginaN;
                 CargarDatos();
             }
+        }
+
+        protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e) {
+            Producto p = new Producto();
+            GridViewRow editingRow = gvProductos.Rows[e.RowIndex];
+            p.SetValuesFromEditableRow(ref editingRow);
+            var operacion = p.PermanentlyDeleteFromDatabase();
+            if (operacion.ErrorFound) {
+                ShowSnackbar(operacion.Details);
+            }
+            gvProductos.EditIndex = -1;
+            CargarDatos();
         }
     }
 }

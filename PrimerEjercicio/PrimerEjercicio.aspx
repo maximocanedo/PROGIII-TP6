@@ -27,13 +27,18 @@
                 OnRowUpdating="gvProductos_RowUpdating"
                 OnPageIndexChanging="gvProductos_PageIndexChanging"
                 AllowPaging="True"
-                OnRowCreated="gvProductos_RowCreated">
+                OnRowCreated="gvProductos_RowCreated" OnRowDeleting="gvProductos_RowDeleting">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
                             <asp:LinkButton ID="gvProductosItemTemplateBtnEditar" runat="server" CommandName="Edit" CssClass="mdc-icon-button mdc-icon-button--danger smaller action">
                                 <span class="mdc-icon-button__ripple"></span>
                                 <i class="material-icons" aria-hidden="true">edit</i>
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="gvProductosItemTemplateBtnBorrar" runat="server" CommandName="Delete" CssClass="mdc-icon-button mdc-button--primary smaller danger">
+                                <span class="mdc-icon-button__ripple"></span>
+                                <i class="material-icons" aria-hidden="true">delete</i>
+                                <!--span class="mdc-button__label"></span-->
                             </asp:LinkButton>
                         </ItemTemplate>
                         <EditItemTemplate>
