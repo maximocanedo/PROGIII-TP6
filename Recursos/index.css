@@ -124,8 +124,8 @@ header {
 }
 
 .mdc-text-field--outlined .mdc-text-field__input {
-    width: auto;
-    min-width: 214px;
+    width: 100%;
+    min-width: 50px;
 }
 
 .mdc-icon-button.smaller {

@@ -88,12 +88,14 @@ namespace TrabajoPractico6.PrimerEjercicio {
         protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e) {
             Producto p = new Producto();
             GridViewRow editingRow = gvProductos.Rows[e.RowIndex];
-            p.SetValuesFromEditableRow(ref editingRow);
+            p.SetValuesFromRow(ref editingRow);
             var operacion = p.PermanentlyDeleteFromDatabase();
             if (operacion.ErrorFound) {
-                ShowSnackbar(operacion.Details);
+                ShowSnackbar("Hubo un problema al intentar eliminar el registro. ");
+            } else {
+                ShowSnackbar("El registro se ha eliminado correctamente. ");
             }
-            gvProductos.EditIndex = -1;
+            //Label1.Text = p.getSummary();
             CargarDatos();
         }
     }
