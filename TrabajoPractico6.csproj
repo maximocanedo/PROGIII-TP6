@@ -70,16 +70,11 @@
     <Content Include="PrimerEjercicio\PrimerEjercicio.aspx" />
     <Content Include="Recursos\index.css" />
     <Content Include="Recursos\index.js" />
-    <Content Include="SegundoEjercicio\MostrarProductos.aspx" />
-    <Content Include="SegundoEjercicio\SegundoEjercicio.aspx" />
-    <Content Include="SegundoEjercicio\SeleccionarProductos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\Producto.cs" />
-    <Compile Include="Clases\Response.cs" />
-    <Compile Include="Clases\SelectedProductsTable.cs" />
     <Compile Include="PrimerEjercicio\PrimerEjercicio.aspx.cs">
       <DependentUpon>PrimerEjercicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,27 +83,6 @@
       <DependentUpon>PrimerEjercicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SegundoEjercicio\MostrarProductos.aspx.cs">
-      <DependentUpon>MostrarProductos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SegundoEjercicio\MostrarProductos.aspx.designer.cs">
-      <DependentUpon>MostrarProductos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SegundoEjercicio\SegundoEjercicio.aspx.cs">
-      <DependentUpon>SegundoEjercicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SegundoEjercicio\SegundoEjercicio.aspx.designer.cs">
-      <DependentUpon>SegundoEjercicio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SegundoEjercicio\SeleccionarProductos.aspx.cs">
-      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SegundoEjercicio\SeleccionarProductos.aspx.designer.cs">
-      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -121,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Inicio\" />
+    <Folder Include="SegundoEjercicio\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

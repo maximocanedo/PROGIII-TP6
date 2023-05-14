@@ -13,11 +13,8 @@
     <link href="/Recursos/index.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" class="centered-form" runat="server">
+    <form id="form1" class="ejercicio1-grdview-form" runat="server">
         <br />
-        <div class="flex-vertical">
-            <span class="mdc-typography--headline4">Primer Ejercicio</span>
-        </div>
         <br />
         <br />
         <div>
@@ -30,9 +27,7 @@
                 OnRowUpdating="gvProductos_RowUpdating"
                 OnPageIndexChanging="gvProductos_PageIndexChanging"
                 AllowPaging="True"
-                OnRowCreated="gvProductos_RowCreated" 
-                OnRowDeleting="gvProductos_RowDeleting"
-                >
+                OnRowCreated="gvProductos_RowCreated" OnRowDeleting="gvProductos_RowDeleting">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -59,26 +54,19 @@
                             </asp:LinkButton>
                         </EditItemTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="ID">
                         <EditItemTemplate>
-                            <asp:Label 
-                                CssClass="mdc-typography--body2" 
-                                ID="ProductoEditItemTemplateView__ID" 
-                                runat="server" 
-                                Text="<%# Eval(Producto.Columns.Id) %>">
-                            </asp:Label>
+                            <asp:Label CssClass="mdc-typography--body2" ID="gvProductsEditTemplateID" runat="server" Text="<%# Eval(Producto.Columns.Id) %>"></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label
                                 CssClass="mdc-typography--body2"
-                                ID="ProductoItemTemplateView__ID"
+                                ID="gvProductosTemplateID"
                                 runat="server"
                                 Text='<%# Eval(Producto.Columns.Id) %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="Nombre">
                         <EditItemTemplate>
                             <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label  edititemtemplate-txtbox">
@@ -86,27 +74,18 @@
                                     <span class="mdc-notched-outline__leading"></span>
                                     <span class="mdc-notched-outline__trailing"></span>
                                 </span>
-                                <asp:TextBox 
-                                    CssClass="mdc-text-field__input" 
-                                    type="text" 
-                                    aria-labelledby="my-label-id" 
-                                    maxlength="40"
-                                    ID="ProductoEditItemTemplateView__Nombre" 
-                                    runat="server" 
-                                    Text="<%# Eval(Producto.Columns.Nombre) %>">
-                                </asp:TextBox>
+                                <asp:TextBox CssClass="mdc-text-field__input" type="text" aria-labelledby="my-label-id" ID="gvProductsEditTemplateNombre" runat="server" Text="<%# Eval(Producto.Columns.Nombre) %>"></asp:TextBox>
                             </label>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label
                                 CssClass="mdc-typography--body2"
-                                ID="ProductoItemTemplateView__Nombre"
+                                ID="gvProductosTemplateNombre"
                                 runat="server"
                                 Text='<%# Eval(Producto.Columns.Nombre) %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="Cantidad por Unidad">
                         <EditItemTemplate>
                             <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label  edititemtemplate-txtbox">
@@ -114,27 +93,18 @@
                                     <span class="mdc-notched-outline__leading"></span>
                                     <span class="mdc-notched-outline__trailing"></span>
                                 </span>
-                                <asp:TextBox 
-                                    CssClass="mdc-text-field__input" 
-                                    type="text" 
-                                    aria-labelledby="gvet2" 
-                                    ID="ProductoEditItemTemplateView__CantidadPorUnidad" 
-                                    runat="server" 
-                                    maxlength="20"
-                                    Text="<%# Eval(Producto.Columns.CantidadPorUnidad) %>">
-                                </asp:TextBox>
+                                <asp:TextBox CssClass="mdc-text-field__input" type="text" aria-labelledby="gvet2" ID="gvProductsEditTemplateCantidadPorUnidad" runat="server" Text="<%# Eval(Producto.Columns.CantidadPorUnidad) %>"></asp:TextBox>
                             </label>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label
                                 CssClass="mdc-typography--body2"
-                                ID="ProductoItemTemplateView__CantidadPorUnidad"
+                                ID="gvProductosTemplateCantidadPorUnidad"
                                 runat="server"
                                 Text='<%# Eval(Producto.Columns.CantidadPorUnidad) %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="Precio Unitario">
                         <EditItemTemplate>
                             <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label  edititemtemplate-txtbox">
@@ -142,21 +112,13 @@
                                     <span class="mdc-notched-outline__leading"></span>
                                     <span class="mdc-notched-outline__trailing"></span>
                                 </span>
-                                <asp:TextBox 
-                                    CssClass="mdc-text-field__input" 
-                                    type="number" 
-                                    step="0.01" 
-                                    aria-labelledby="gvet3" 
-                                    ID="ProductoEditItemTemplateView__PrecioUnitario" 
-                                    runat="server" 
-                                    Text="<%# Eval(Producto.Columns.PrecioUnitario) %>">
-                                </asp:TextBox>
+                                <asp:TextBox CssClass="mdc-text-field__input" type="text" step="0.01" aria-labelledby="gvet3" ID="gvProductsEditTemplatePrecioUnitario" runat="server" Text="<%# Eval(Producto.Columns.PrecioUnitario) %>"></asp:TextBox>
                             </label>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label
                                 CssClass="mdc-typography--body2"
-                                ID="ProductoItemTemplateView__PrecioUnitario"
+                                ID="gvProductosTemplatePrecioUnitario"
                                 runat="server"
                                 Text='<%# Eval(Producto.Columns.PrecioUnitario) %>'>
                             </asp:Label>

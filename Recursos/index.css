@@ -1,9 +1,5 @@
-﻿@import url('./material-colors.css');
-* {
+﻿* {
     box-sizing: border-box;
-}
-body {
-    background: var(--material-grey-50);
 }
 
 form.agregarSucursal {
@@ -32,9 +28,6 @@ table {
     border-spacing: 0;
     table-layout: fixed;
     box-sizing: border-box;
-    background: white;
-    border-radius: 4px;
-    box-shadow: var(--md-shadow--2dp);
 }
 
     table tbody tr:first-child {
@@ -80,13 +73,6 @@ th {
 .flex-horizontal {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 24px;
-}
-.flex-vertical {
-    display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     gap: 24px;
@@ -158,27 +144,27 @@ tr:hover * .mdc-icon-button.smaller {
     opacity: 1;
 }
 .mdc-icon-button.action {
-    --mdc-ripple-color: var(--material-blue-400);
+    --mdc-ripple-color: var(--mdc-theme-secondary);
 }
 
     .mdc-icon-button.action .material-icons {
-        color: var(--material-blue-400) !important;
+        color: var(--mdc-theme-secondary) !important;
     }
 
     .mdc-icon-button.action::before, .mdc-icon-button.action::after {
-        background-color: var(--material-blue-400);
+        background-color: var(--mdc-theme-secondary);
     }
 
 .mdc-icon-button.danger {
-    --mdc-ripple-color: var(--material-red-400);
+    --mdc-ripple-color: var(--mdc-theme-error);
 }
 
     .mdc-icon-button.danger .material-icons {
-        color: var(--material-red-400) !important;
+        color: var(--mdc-theme-error) !important;
     }
 
     .mdc-icon-button.danger::before, .mdc-icon-button.danger::after {
-        background-color: var(--material-red-400);
+        background-color: var(--mdc-theme-error);
     }
 .edititemtemplate-txtbox {
     height: 36px !important;
@@ -212,92 +198,15 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100% !important;
 }
 
-.centered-form {
+.ejercicio1-grdview-form {
     padding-top: 50px;
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-bottom: 100px;
 }
 .ejercicio1-grdview-form table {
     width: auto;
-}
-form.segundo-ejercicio {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    padding: 45px 15px 30px 15px;
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    padding: 12px 0px;
-    width: auto;
-    min-width: 300px;
-    max-width: 500px;
-    justify-content: flex-start;
-    box-shadow: var(--md-shadow--2dp);
-    background: white;
-    border-radius: 4px;
-
-}
-.list .mdc-list-item {
-    padding-top: 6px;
-    padding-bottom: 6px;
-}
-.list .mdc-list-item__text {
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    width: 100%;
-    height: 100%;
-}
-.list .mdc-list-item__text .__icon {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 10px;
-}
-.list .mdc-list-item__text .__text {
-    display: flex;
-    flex-direction: column;
-
-}
-.__text span {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.cmn {
-    color: var(--material-blue-500);
-}
-.dng {
-    color: var(--material-red-500);
-}
-
-
-.NoProductsSection {
-    width: 100%;
-    height: 200px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.36;
-    display: none;
-}
-.NoProductsSection span.material-icons {
-    color: black;
-    opacity: 0.6;
-    font-size: 56px;
-    padding-bottom: 24px;
 }

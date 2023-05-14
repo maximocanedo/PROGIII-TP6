@@ -44,7 +44,7 @@ namespace TrabajoPractico6.PrimerEjercicio {
             var operacion = p.UpdateInDatabase();
             if(operacion.ErrorFound) {
                 ShowSnackbar(operacion.Details);
-            } //*/
+            }
             gvProductos.EditIndex = -1;
             CargarDatos();
 

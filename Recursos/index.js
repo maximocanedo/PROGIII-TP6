@@ -40,9 +40,9 @@ class Header {
     }
 }
 
-window.ShowSnackbar = (message) => {
+window.MostrarMensaje = (mensaje) => {
     window.snackbar = new mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
-    window.snackbar.labelText = message;
+    window.snackbar.labelText = mensaje;
     window.snackbar.open();
 };
 window.onload = (() => {
@@ -50,14 +50,11 @@ window.onload = (() => {
         title: "Trabajo Práctico N.º 6",
         group: "Resolución de Máximo Canedo",
         links: [
-            ["Primer Ejercicio", "/PrimerEjercicio/PrimerEjercicio.aspx"],
-            ["Segundo Ejercicio", "/SegundoEjercicio/SegundoEjercicio.aspx"],
-            ["[EJ2] Seleccionar Productos", "/SegundoEjercicio/SeleccionarProductos.aspx"],
-            ["[EJ2] Mostrar Productos Seleccionados", "/SegundoEjercicio/MostrarProductos.aspx"]
+            ["Primer Ejercicio", "./PrimerEjercicio/PrimerEjercicio.aspx"],
         ],
         otherLinks: [
             ["Repositorio", "https://github.com/maximocanedo/PROGIII-TP6"],
-            ["Foro", "https://frgp.cvg.utn.edu.ar/mod/forum/discuss.php?d=157046"]
+            ["Foro", "about:blank"]
         ]
     });
     header.putOnPage();
@@ -79,9 +76,4 @@ window.onload = (() => {
         MostrarMensaje(input.value);
     });
     /**/
-    document.querySelectorAll('ripple-list').forEach(list => {
-        
-    });
-    const list = new mdc.list.MDCList(document.querySelector('.mdc-list'));
-    const listItemRipples = list.listElements.map((listItemEl) => mdc.ripple.MDCRipple.attachTo(listItemEl));
 });
