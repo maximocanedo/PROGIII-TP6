@@ -6,23 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 namespace TrabajoPractico6.Clases {
-    public class Response {
-        public bool ErrorFound { get; set; }
-        public string Message { get; set; }
-        public string Details { get; set; }
-        public object ObjectReturned { get; set; }
-        public int AffectedRows { get; set; }
-        public Exception Exception { get; set; }
-        public Response() {
-            this.ErrorFound = false;
-            this.Message = "";
-            this.Details = "";
-            this.ObjectReturned = null;
-            this.AffectedRows = 0;
-            this.Exception = null;
-        }
-
-    }
+    
     public class Connection {
         public static class Database {
             public static string Neptuno { get { return "Neptuno"; } }
