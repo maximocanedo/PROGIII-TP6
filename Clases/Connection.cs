@@ -6,7 +6,6 @@ using System.Data;
 using System.Data.SqlClient;
 
 namespace TrabajoPractico6.Clases {
-    
     public class Connection {
         public static class Database {
             public static string Neptuno { get { return "Neptuno"; } }
@@ -14,19 +13,21 @@ namespace TrabajoPractico6.Clases {
             public static string Libreria { get { return "Libreria"; } }
             public static string Viajes { get { return "Viajes"; } }
         }
-        
+        public string ServerName { get { return "localhost\\SQLEXPRESS"; } }
+        public bool IntegratedSecurity { get { return true; } }
         public string DatabaseName { get; set; }
-        public Response Response = new Response() { }; 
+        public Response Response = new Response() { };
         public Connection(string DatabaseName) {
             this.DatabaseName = DatabaseName;
         }
         public SqlConnection OpenConnection(string DatabaseName) {
             SqlConnection con;
             try {
-                string r = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=" + this.DatabaseName + ";Integrated Security=True";
+                string r = $"Data Source={ServerName};Initial Catalog={DatabaseName};Integrated Security={IntegratedSecurity}";
                 con = new SqlConnection(r);
 
-            } catch(SqlException err) {
+            }
+            catch (SqlException err) {
                 this.Response.ErrorFound = true;
                 this.Response.Message = "Error al conectar al servidor";
                 this.Response.Details = err.Message;

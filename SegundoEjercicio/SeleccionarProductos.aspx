@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrimerEjercicio.aspx.cs" Inherits="TrabajoPractico6.PrimerEjercicio.PrimerEjercicio" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeleccionarProductos.aspx.cs" Inherits="TrabajoPractico6.SegundoEjercicio.SeleccionarProductos" %>
 
-<%@ Import Namespace="TrabajoPractico6.Clases" %>
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -13,18 +13,9 @@
     <link href="/Recursos/index.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" class="ejercicio1-grdview-form" runat="server">
-        <br />
-        <br />
-        <br />
+    <form id="form1" runat="server">
         <div>
-           <!-- GridView acá -->
         </div>
     </form>
-    <aside class="mdc-snackbar">
-        <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-            <div class="mdc-snackbar__label" aria-atomic="false"></div>
-        </div>
-    </aside>
 </body>
 </html>

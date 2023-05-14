@@ -19,6 +19,5 @@ namespace TrabajoPractico6.Clases {
             this.AffectedRows = 0;
             this.Exception = null;
         }
-
     }
 }
