@@ -5,6 +5,13 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 
+/*
+ ACÁ NO HAY NADA QUE TE PUEDA INTERESAR O SER DE AYUDA PARA REALIZAR LOS EJERCICIOS.
+La clase Producto tiene todo lo que necesitás. Podés ver cómo está hecha la clase para saber cómo es, pero no necesitarás
+usar ningún método de esta clase de forma directa.
+
+ */
+
 namespace TrabajoPractico6.Clases {
     public class Connection {
         public static class Database {
@@ -20,6 +27,11 @@ namespace TrabajoPractico6.Clases {
         public Connection(string DatabaseName) {
             this.DatabaseName = DatabaseName;
         }
+        /// <summary>
+        /// Devuelve una conexión SQL.
+        /// </summary>
+        /// <param name="DatabaseName">Nombre de la base de datos a la que querés conectar. Para Neptuno, hay una variable: Database.Neptuno.</param>
+        /// <returns></returns>
         public SqlConnection OpenConnection(string DatabaseName) {
             SqlConnection con;
             try {
