@@ -35,6 +35,10 @@ namespace TrabajoPractico6.PrimerEjercicio
             GrdProducto.DataBind(); 
         }
 
+        protected void GrdProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            CargarGridview();
+        }
     }
 }
 

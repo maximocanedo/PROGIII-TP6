@@ -19,7 +19,7 @@
         <br />
         <div>
            <!-- GridView acá -->
-            <asp:GridView ID="GrdProducto" runat="server" AutoGenerateColumns="False" >
+            <asp:GridView ID="GrdProducto" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GrdProducto_PageIndexChanging" >
                 <Columns>
                     <asp:TemplateField HeaderText="Id">
                         <ItemTemplate>
