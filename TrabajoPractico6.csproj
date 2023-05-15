@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Inicio.aspx" />
     <Content Include="PrimerEjercicio\PrimerEjercicio.aspx" />
     <Content Include="Recursos\index.css" />
     <Content Include="Recursos\index.js" />
@@ -79,6 +80,13 @@
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="Clases\Response.cs" />
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PrimerEjercicio\PrimerEjercicio.aspx.cs">
       <DependentUpon>PrimerEjercicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
