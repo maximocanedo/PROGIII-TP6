@@ -37,6 +37,7 @@ namespace TrabajoPractico6.PrimerEjercicio
 
         protected void GrdProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            GrdProducto.PageIndex = e.NewPageIndex;
             CargarGridview();
         }
     }
