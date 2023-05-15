@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TrabajoPractico6.Clases;
+using System.Data;
 
-namespace TrabajoPractico6.PrimerEjercicio {
+namespace TrabajoPractico6.PrimerEjercicio
+{
 
-    public partial class PrimerEjercicio : System.Web.UI.Page {
-        public static void ShowSnackbar(string mensaje) {
+    public partial class PrimerEjercicio : System.Web.UI.Page
+    {
+        public static void ShowSnackbar(string mensaje)
+        {
             string script = "MostrarMensaje('" + mensaje + "');";
             ScriptManager.RegisterStartupScript(HttpContext.Current.CurrentHandler as Page, typeof(Page), "MostrarMensaje", script, true);
         }
@@ -17,18 +21,22 @@ namespace TrabajoPractico6.PrimerEjercicio {
         {
             if (!IsPostBack)
             {
-               /// CargarGridview();
-                GrdProducto.Visible = true;
+                CargarGridview();
 
             }
+            
         }
-       /* public void CargarGridview()
+         public void CargarGridview()
         {
-            Producto GProductos = new Producto();
-            GrdProducto.DataSource = GProductos.GetProductsForFirstTask();
-            GrdProducto.DataBind();
-        }*/
-    }
+            Response res = Producto.GetProductsForFirstTask();
+            if (res.ErrorFound) return; // Manejar error
+            DataSet productos = (DataSet)res.ObjectReturned;
+            GrdProducto.DataSource = productos;
+            GrdProducto.DataBind(); 
+        }
 
+    }
 }
-}
+
+
+
