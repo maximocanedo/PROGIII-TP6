@@ -13,11 +13,22 @@ namespace TrabajoPractico6.PrimerEjercicio {
             string script = "MostrarMensaje('" + mensaje + "');";
             ScriptManager.RegisterStartupScript(HttpContext.Current.CurrentHandler as Page, typeof(Page), "MostrarMensaje", script, true);
         }
-        protected void Page_Load(object sender, EventArgs e) {
-            if(!IsPostBack) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+               /// CargarGridview();
+                GrdProducto.Visible = true;
 
             }
         }
-
+       /* public void CargarGridview()
+        {
+            Producto GProductos = new Producto();
+            GrdProducto.DataSource = GProductos.GetProductsForFirstTask();
+            GrdProducto.DataBind();
+        }*/
     }
+
+}
 }

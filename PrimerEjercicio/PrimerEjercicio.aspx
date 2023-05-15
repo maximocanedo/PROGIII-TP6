@@ -15,10 +15,12 @@
 <body>
     <form id="form1" class="ejercicio1-grdview-form" runat="server">
         <br />
-        <br />
+        Producto<br />
         <br />
         <div>
            <!-- GridView acá -->
+            <asp:GridView ID="GrdProducto" runat="server">
+            </asp:GridView>
         </div>
     </form>
     <aside class="mdc-snackbar">
