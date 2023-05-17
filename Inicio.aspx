@@ -22,12 +22,12 @@
                     <td class="auto-style2"><h1>Nº Grupo:</h1 </td>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Ej1.aspx">Ejercicio 1</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="PrimerEjercicio/PrimerEjercicio.aspx">Ejercicio 1</asp:HyperLink>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="Ej2.aspx">Ejercico 2</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="SegundoEjercicio/Inicio.aspx">Ejercicio 2</asp:HyperLink>
                     </td>
                 </tr>
             </table>
