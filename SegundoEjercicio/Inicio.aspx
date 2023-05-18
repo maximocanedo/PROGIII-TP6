@@ -22,7 +22,7 @@
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;
-            <asp:HyperLink ID="hlSeleccionarProductos" runat="server" NavigateUrl="SegundoEjercicio/SeleccionarProductos.aspx">Seleccionar Productos</asp:HyperLink>
+            <asp:HyperLink ID="hlSeleccionarProductos" runat="server" NavigateUrl="SeleccionarProductos.aspx">Seleccionar Productos</asp:HyperLink>
             <br />
 &nbsp;&nbsp;
             <br />
@@ -32,7 +32,7 @@
 &nbsp;&nbsp;
             <br />
 &nbsp;&nbsp;&nbsp;
-            <asp:HyperLink ID="hlMostrarProductos" runat="server" NavigateUrl="SegundoEjercicio/MostrarProductosSeleccionados.aspx">Mostrar Productos Seleccionados</asp:HyperLink>
+            <asp:HyperLink ID="hlMostrarProductos" runat="server" NavigateUrl="MostrarProductosSeleccionados.aspx">Mostrar Productos Seleccionados</asp:HyperLink>
         </div>
     </form>
 </body>

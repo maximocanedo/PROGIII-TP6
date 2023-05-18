@@ -56,7 +56,7 @@
             <br />
             <br />
             <br />
-            <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="SegundoEjercicio/Inicio.aspx">Volver al Inicio</asp:HyperLink>
+            <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="Inicio.aspx">Volver al Inicio</asp:HyperLink>
         </div>
     </form>
 </body>
