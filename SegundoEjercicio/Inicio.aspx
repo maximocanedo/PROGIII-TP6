@@ -15,6 +15,24 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblInicio" runat="server" Font-Bold="True" Font-Size="Large" Text="Inicio"></asp:Label>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hlSeleccionarProductos" runat="server" NavigateUrl="SegundoEjercicio/SeleccionarProductos.aspx">Seleccionar Productos</asp:HyperLink>
+            <br />
+&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp;&nbsp;
+            <asp:LinkButton ID="lbtnEliminarProdSel" runat="server">Eliminar Productos Seleccionados</asp:LinkButton>
+            <br />
+&nbsp;&nbsp;
+            <br />
+&nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hlMostrarProductos" runat="server" NavigateUrl="SegundoEjercicio/MostrarProductosSeleccionados.aspx">Mostrar Productos Seleccionados</asp:HyperLink>
         </div>
     </form>
 </body>

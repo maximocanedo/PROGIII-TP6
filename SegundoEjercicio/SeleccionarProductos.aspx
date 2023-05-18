@@ -11,10 +11,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="/Recursos/index.js"></script>
     <link href="/Recursos/index.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <br />
+        <asp:GridView ID="gvProductos" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="gvProductos_SelectedIndexChanging" AllowPaging="True" AutoGenerateColumns="False" CssClass="auto-style1" PageSize="14" Width="1080px" OnPageIndexChanging="gvProductos_PageIndexChanging">
+            <Columns>
+                <asp:TemplateField HeaderText="ID Producto">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_IDProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Nombre Producto">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_NombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ID Proveedor">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_IDProveedor" runat="server" Text='<%# Bind("IdProveedor") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Precio Unitario">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_PrecioUnitario" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
         <div>
+            <br />
+            <asp:Label ID="lblProductosAgregados" runat="server" Text="Productos agregados: "></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+            <br />
+            <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="SegundoEjercicio/Inicio.aspx">Volver al Inicio</asp:HyperLink>
         </div>
     </form>
 </body>
