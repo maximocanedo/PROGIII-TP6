@@ -15,6 +15,47 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblProductosSel" runat="server" Text="Productos seleccionados por el usuario:"></asp:Label>
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:GridView ID="gvProductosSeleccionados" runat="server" AutoGenerateColumns="False" Width="865px">
+                <Columns>
+                    <asp:TemplateField HeaderText="ID Producto">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_IDProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#003399" ForeColor="White" />
+                        <ItemStyle BorderColor="Blue" BorderStyle="Solid" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Nombre Producto">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_NombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#003399" ForeColor="White" />
+                        <ItemStyle BorderColor="Blue" BorderStyle="Solid" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ID Proveedor">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_IDProveedor" runat="server" Text='<%# Bind("IdProveedor") %>'></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#003399" ForeColor="White" />
+                        <ItemStyle BorderColor="Blue" BorderStyle="Solid" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Precio Unidad">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_PrecioUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle BackColor="#003399" ForeColor="White" />
+                        <ItemStyle BorderColor="Blue" BorderStyle="Solid" />
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <br />
+            <br />
+            <asp:HyperLink ID="hlVolver" runat="server" NavigateUrl="Inicio.aspx">Volver al Inicio</asp:HyperLink>
         </div>
     </form>
 </body>

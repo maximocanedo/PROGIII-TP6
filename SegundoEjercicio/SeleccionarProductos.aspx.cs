@@ -8,27 +8,7 @@ using TrabajoPractico6.Clases;
 using System.Data;
 
 namespace TrabajoPractico6.SegundoEjercicio {
-
-    // Clase auxiliar para contar las selecciones.
-    public class Contador
-    {
-        // propiedad.
-        public int contador { get; set; }
-       
-        // constructor.
-        public Contador(int c=0) { contador = c; }
-
-        // set y get:
-        public void setContador(int c) { contador = c; }
-        public int getContador() { return contador; }
-    };
-
     public partial class SeleccionarProductos : System.Web.UI.Page {
-
-        // Variables globales:
-        Contador contador = new Contador();
-        string aux;
-
         protected void cargarGridView()
         {
             Response productos = Producto.GetProductsForSecondTask();
@@ -46,21 +26,42 @@ namespace TrabajoPractico6.SegundoEjercicio {
             }
         }
 
+        protected bool verificarEnLista(ListItemCollection lista, string nombreProd)
+        {
+            foreach (ListItem nombre in lista)
+            {
+                if (nombre.Text == nombreProd) // Se comparan los nombres de la lista con el nombre del nuevo producto seleccionado. Si el nombre ya se encuentra en la lista, la función retorna true.
+                {
+                    return true;
+                }
+            }
+            return false; // Caso contrario (si no se repite), retorna false.
+        }
+
         protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
+            // Guardo en una variable string cada dato de la fila que seleccionó el usuario:
+            string s_IDProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProducto")).Text;
             string s_NombreProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_NombreProducto")).Text;
-            if (contador.getContador() == 0)
+            string s_IDProveedor = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProveedor")).Text;
+            string s_PrecioUnitario = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_PrecioUnitario")).Text;
+
+            // Voy listando en el Label los productos que el usuario seleccione:
+            ListItemCollection lista = new ListItemCollection(); 
+            if (Session["NombresProductosSel"] == null)
             {
+                Session["NombresProductosSel"] = new ListItemCollection();
+                lista = (ListItemCollection)Session["NombresProductosSel"];
+
                 lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto; // Con la etiqueta </br> se crea un salto de línea, listando todos los productos que el usuario agregue.
-                aux = s_NombreProducto; // guardo el nombre del producto, para que la próxima vez que el usuario haga una selección, se compare el nuevo producto con aux.
-                                               // Si es el mismo, no se vuelve a listar.
-                contador.setContador(1);
-            } else if(contador.getContador() >= 1)
+                lista.Add(s_NombreProducto); // agrego el nombre del producto a la lista, para que la próxima vez que el usuario haga una selección, comparar los nombres de la lista con el nombre del nuevo producto.
+                guardarProductos(s_IDProducto, s_NombreProducto, s_IDProveedor, s_PrecioUnitario);
+            }
+            if(!verificarEnLista(lista, s_NombreProducto)) // si la función devuelve false (no se repite el nombre en la lista), entonces:
             {
-                if(s_NombreProducto != aux)
-                {
-                    lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto;
-                }   
+                lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto;
+                Session["NombresProductosSel"] = s_NombreProducto;
+                guardarProductos(s_IDProducto, s_NombreProducto, s_IDProveedor, s_PrecioUnitario);
             }
         }
 
@@ -70,9 +71,32 @@ namespace TrabajoPractico6.SegundoEjercicio {
             cargarGridView();
         }
 
-        protected void guardarProductos()
+        protected void guardarProductos(string IDProducto_Sel, string NombreProducto_Sel, string IDProveedor_Sel, string PrecioUnitario_Sel)
         {
+            DataTable dt;
+            Producto producto = new Producto()
+            {
+                Id = Convert.ToInt32(IDProducto_Sel),
+                Nombre = NombreProducto_Sel,
+                IdProveedor = Convert.ToInt32(IDProveedor_Sel),
+                PrecioUnitario = Convert.ToDouble(PrecioUnitario_Sel)
+            };
+            if (Session["Tabla"] == null)
+            {
+                Session["Tabla"] = new DataTable();
+                dt = (DataTable)Session["Tabla"];
 
+                DataColumn dc = new DataColumn(Producto.Columns.Id, System.Type.GetType("System.String"));
+                dt.Columns.Add(dc);
+                dc = new DataColumn(Producto.Columns.Nombre, System.Type.GetType("System.String"));
+                dt.Columns.Add(dc);
+                dc = new DataColumn(Producto.Columns.IdProveedor, System.Type.GetType("System.String"));
+                dt.Columns.Add(dc);
+                dc = new DataColumn(Producto.Columns.PrecioUnitario, System.Type.GetType("System.String"));
+                dt.Columns.Add(dc);
+            }
+            dt = (DataTable)Session["Tabla"]; 
+            dt.Rows.Add(producto.GetRow(dt));
         }
     }
 }
