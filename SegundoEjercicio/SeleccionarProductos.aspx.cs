@@ -23,9 +23,11 @@ namespace TrabajoPractico6.SegundoEjercicio {
             if (!IsPostBack)
             {
                 cargarGridView();
+                
             }
         }
 
+        /*---------------------------FUNCION DE OLI-----------------------------
         protected bool verificarEnLista(ListItemCollection lista, string nombreProd)
         {
             foreach (ListItem nombre in lista)
@@ -37,15 +39,56 @@ namespace TrabajoPractico6.SegundoEjercicio {
             }
             return false; // Caso contrario (si no se repite), retorna false.
         }
+        *///----------------------------FUNCION DE OLI----------------------
 
         protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            // Guardo en una variable string cada dato de la fila que seleccionó el usuario:
+      
             string s_IDProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProducto")).Text;
             string s_NombreProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_NombreProducto")).Text;
             string s_IDProveedor = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProveedor")).Text;
             string s_PrecioUnitario = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_PrecioUnitario")).Text;
 
+            
+            if(Session["ProductosSeleccionados"]==null)//SI LA VARIABLE SESSION NO EXISTE, SE CREA
+            {
+                //INICIALIZACION DEL DATATABLE Y SESSION
+                DataTable dt = new DataTable();
+                dt.Columns.Add("IDProducto", typeof(string));
+                dt.Columns.Add("NombreProducto", typeof(string));
+                dt.Columns.Add("IDProveedor", typeof(string));
+                dt.Columns.Add("PrecioUnitario", typeof(string));
+                Session["ProductosSeleccionados"] = dt;
+            }
+            DataTable dtProductosSel = (DataTable)Session["ProductosSeleccionados"];
+            //VERIFICACION DE PRODUCTO REPETIDO
+            bool productoExistente = false;
+            foreach (DataRow row in dtProductosSel.Rows)
+             {
+               if (row["IDProducto"].ToString() == s_IDProducto)
+               {
+                 productoExistente = true;
+                 break;
+               }
+             }
+            //SI NO SE REPITE, SE AGREGA
+            if (!productoExistente)
+            {
+               DataRow newRow = dtProductosSel.NewRow();
+               newRow["IDProducto"] = s_IDProducto;
+               newRow["NombreProducto"] = s_NombreProducto;
+               newRow["IDProveedor"] = s_IDProveedor;
+               newRow["PrecioUnitario"] = s_PrecioUnitario;
+               dtProductosSel.Rows.Add(newRow);
+
+                //CARGAR TABLA ACTUALIZADA A LA VARIABLE SESSION
+                Session["ProductosSeleccionados"] = dtProductosSel;
+                lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto;
+            }
+            
+            
+            //------------------------------------------------------CODIGO DE OLI------------------------------------
+            /*
             // Voy listando en el Label los productos que el usuario seleccione:
             ListItemCollection lista = new ListItemCollection(); 
             if (Session["NombresProductosSel"] == null)
@@ -63,6 +106,8 @@ namespace TrabajoPractico6.SegundoEjercicio {
                 Session["NombresProductosSel"] = s_NombreProducto;
                 guardarProductos(s_IDProducto, s_NombreProducto, s_IDProveedor, s_PrecioUnitario);
             }
+            */
+            //------------------------------------------------------------------------------------------------------
         }
 
         protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -71,6 +116,7 @@ namespace TrabajoPractico6.SegundoEjercicio {
             cargarGridView();
         }
 
+        /*-------------------------------FUNCION DE OLI-----------------------------------------------------
         protected void guardarProductos(string IDProducto_Sel, string NombreProducto_Sel, string IDProveedor_Sel, string PrecioUnitario_Sel)
         {
             DataTable dt;
@@ -98,5 +144,6 @@ namespace TrabajoPractico6.SegundoEjercicio {
             dt = (DataTable)Session["Tabla"]; 
             dt.Rows.Add(producto.GetRow(dt));
         }
+        *///---------------------------------------------------------------------------------------------------------
     }
 }

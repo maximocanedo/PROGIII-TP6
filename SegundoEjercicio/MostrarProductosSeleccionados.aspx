@@ -46,7 +46,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Precio Unidad">
                         <ItemTemplate>
-                            <asp:Label ID="lbl_PrecioUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+                            <asp:Label ID="lbl_PrecioUnidad" runat="server" Text='<%# Bind("PrecioUnitario") %>'></asp:Label>
                         </ItemTemplate>
                         <HeaderStyle BackColor="#003399" ForeColor="White" />
                         <ItemStyle BorderColor="Blue" BorderStyle="Solid" />

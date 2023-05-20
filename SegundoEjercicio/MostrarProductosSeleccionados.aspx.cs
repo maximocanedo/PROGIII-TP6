@@ -11,7 +11,7 @@ namespace TrabajoPractico6.SegundoEjercicio {
 
         protected void mostrarProductosSeleccionados()
         {
-            DataTable dt = (DataTable)Session["Tabla"];
+            DataTable dt = (DataTable)Session["ProductosSeleccionados"];
             gvProductosSeleccionados.DataSource = dt;
             gvProductosSeleccionados.DataBind();
         }
