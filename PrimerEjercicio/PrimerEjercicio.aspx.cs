@@ -7,63 +7,53 @@ using System.Web.UI.WebControls;
 using TrabajoPractico6.Clases;
 using System.Data;
 
-namespace TrabajoPractico6.PrimerEjercicio
-{
-
-    public partial class PrimerEjercicio : System.Web.UI.Page
-    {
-        public static void ShowSnackbar(string mensaje)
-        {
+namespace TrabajoPractico6.PrimerEjercicio {
+    public partial class PrimerEjercicio : System.Web.UI.Page {
+        public static void ShowSnackbar(string mensaje) {
             string script = "MostrarMensaje('" + mensaje + "');";
             ScriptManager.RegisterStartupScript(HttpContext.Current.CurrentHandler as Page, typeof(Page), "MostrarMensaje", script, true);
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
+        protected void Page_Load(object sender, EventArgs e) {
+            if (!IsPostBack) {
                 CargarGridview();
 
             }
-            
+
         }
-         public void CargarGridview()
-        {
+        public void CargarGridview() {
             Response res = Producto.GetProductsForFirstTask();
-            if (res.ErrorFound) return; // Manejar error
+            if (res.ErrorFound) {
+                ShowSnackbar("Error. " + res.Details);
+            }
             DataSet productos = (DataSet)res.ObjectReturned;
             GrdProducto.DataSource = productos;
-            GrdProducto.DataBind(); 
+            GrdProducto.DataBind();
         }
 
-        protected void GrdProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
+        protected void GrdProducto_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             GrdProducto.PageIndex = e.NewPageIndex;
             CargarGridview();
         }
 
-        protected void GrdProducto_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
+        protected void GrdProducto_RowDeleting(object sender, GridViewDeleteEventArgs e) {
             string S_ID = ((Label)GrdProducto.Rows[e.RowIndex].FindControl("LBL_ID")).Text;
-            Producto pro= new Producto();
+            Producto pro = new Producto();
             pro.Id = Convert.ToInt32(S_ID);
             pro.PermanentlyDeleteFromDatabase();
             CargarGridview();
         }
 
-        protected void GrdProducto_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
+        protected void GrdProducto_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e) {
             GrdProducto.EditIndex = -1;
             CargarGridview();
         }
 
-        protected void GrdProducto_RowEditing(object sender, GridViewEditEventArgs e)
-        {
+        protected void GrdProducto_RowEditing(object sender, GridViewEditEventArgs e) {
             GrdProducto.EditIndex = e.NewEditIndex;
             CargarGridview();
         }
 
-        protected void GrdProducto_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
+        protected void GrdProducto_RowUpdating(object sender, GridViewUpdateEventArgs e) {
             string s_IDProducto = ((Label)GrdProducto.Rows[e.RowIndex].FindControl("LB_ID")).Text;
             string s_NombreProducto = ((TextBox)GrdProducto.Rows[e.RowIndex].FindControl("TB_Nombre")).Text;
             string s_Unidades = ((TextBox)GrdProducto.Rows[e.RowIndex].FindControl("TB_Cantidad")).Text;
