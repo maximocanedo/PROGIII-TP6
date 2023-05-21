@@ -37,8 +37,9 @@ namespace TrabajoPractico6.PrimerEjercicio {
 
         protected void GrdProducto_RowDeleting(object sender, GridViewDeleteEventArgs e) {
             string S_ID = ((Label)GrdProducto.Rows[e.RowIndex].FindControl("LBL_ID")).Text;
-            Producto pro = new Producto();
-            pro.Id = Convert.ToInt32(S_ID);
+            Producto pro = new Producto() {
+                Id = Convert.ToInt32(S_ID)
+            };
             Response resultado = pro.PermanentlyDeleteFromDatabase();
             ShowSnackbar(resultado.ErrorFound
                     ? $"Error al intentar eliminar. {resultado.Details}"
@@ -63,12 +64,19 @@ namespace TrabajoPractico6.PrimerEjercicio {
             string s_Unidades = ((TextBox)GrdProducto.Rows[e.RowIndex].FindControl("TB_Cantidad")).Text;
             string s_Precio = ((TextBox)GrdProducto.Rows[e.RowIndex].FindControl("TB_Precio")).Text;
 
-            Producto pro = new Producto();
-            pro.Id = Convert.ToInt32(s_IDProducto);
-            pro.Nombre = s_NombreProducto;
-            pro.CantidadPorUnidad = s_Unidades;
-            pro.PrecioUnitario = Convert.ToDouble(s_Precio);
-            pro.UpdateInDatabase();
+            Producto pro = new Producto() {
+                Id = Convert.ToInt32(s_IDProducto),
+                Nombre = s_NombreProducto,
+                CantidadPorUnidad = s_Unidades,
+                PrecioUnitario = Convert.ToDouble(s_Precio)
+            };
+
+            Response operacion = pro.UpdateInDatabase();
+            ShowSnackbar(operacion.ErrorFound
+                    ? $"Hubo un error al intentar actualizar los datos. {operacion.Details}"
+                    : "Se actualizó correctamente el registro. "
+                );
+
             GrdProducto.EditIndex = -1;
             CargarGridview();
         }
