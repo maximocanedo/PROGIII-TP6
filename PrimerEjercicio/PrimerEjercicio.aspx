@@ -36,9 +36,11 @@
                     <asp:TemplateField HeaderText="Id">
                         <EditItemTemplate>
                             <asp:Label ID="LB_ID" runat="server" Text='<%# Eval(Producto.Columns.Id) %>'></asp:Label>
+                            <ItemStyle VerticalAlign="Middle" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="LBL_ID" runat="server" Text='<%# Eval(Producto.Columns.Id) %>'></asp:Label>
+                            <ItemStyle VerticalAlign="Middle" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Nombre">
@@ -55,6 +57,7 @@
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="LBNombre" runat="server" Text='<%# Eval(Producto.Columns.Nombre) %>'></asp:Label>
+                            <ItemStyle VerticalAlign="Middle" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Cantidad">
@@ -71,6 +74,7 @@
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="LBCantidad" runat="server" Text='<%# Eval(Producto.Columns.CantidadPorUnidad) %>'></asp:Label>
+                            <ItemStyle VerticalAlign="Middle" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Precio">
@@ -89,7 +93,8 @@
                             </div>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Eval(Producto.Columns.PrecioUnitario) %>'></asp:Label>
+                            <ItemStyle VerticalAlign="Middle" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

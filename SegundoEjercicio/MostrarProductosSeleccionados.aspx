@@ -15,14 +15,12 @@
     <link href="/Recursos/index.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" class="centered-form" runat="server">
+        <br />
+            <h2>Productos Seleccionados</h2>
+            <br />
         <div>
-            <br />
-            <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblProductosSel" runat="server" Text="Productos seleccionados por el usuario:"></asp:Label>
-            <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
             <asp:GridView ID="gvProductosSeleccionados" CssClass="table table-hover" runat="server" AutoGenerateColumns="False" Width="865px">
                 <Columns>
                     <asp:TemplateField HeaderText="ID Producto">

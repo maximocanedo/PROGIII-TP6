@@ -56,7 +56,7 @@ namespace TrabajoPractico6.SegundoEjercicio {
 
                 //CARGAR TABLA ACTUALIZADA A LA VARIABLE SESSION
                 Session[TablaProductosSeleccionados] = dtProductosSel;
-                lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto;
+                lblProductosAgregados.Text += $"<li>{s_NombreProducto}</li>";
             }
         }
 
