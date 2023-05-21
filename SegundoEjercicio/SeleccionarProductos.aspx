@@ -27,25 +27,29 @@
                     <ItemTemplate>
                         <asp:Label ID="lbl_IDProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <HeaderStyle BackColor="#003399" ForeColor="White" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" BorderColor="Blue" BorderStyle="Solid" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Nombre Producto">
                     <ItemTemplate>
                         <asp:Label ID="lbl_NombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <HeaderStyle BackColor="#003399" ForeColor="White" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" BorderColor="Blue" BorderStyle="Solid" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="ID Proveedor">
                     <ItemTemplate>
                         <asp:Label ID="lbl_IDProveedor" runat="server" Text='<%# Bind("IdProveedor") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <HeaderStyle BackColor="#003399" ForeColor="White" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" BorderColor="Blue" BorderStyle="Solid" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Precio Unitario">
                     <ItemTemplate>
                         <asp:Label ID="lbl_PrecioUnitario" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
                     </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <HeaderStyle BackColor="#003399" ForeColor="White" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" BorderColor="Blue" BorderStyle="Solid" />
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>

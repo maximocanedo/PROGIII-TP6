@@ -27,7 +27,9 @@
 &nbsp;&nbsp;
             <br />
 &nbsp;&nbsp;&nbsp;
-            <asp:LinkButton ID="lbtnEliminarProdSel" runat="server">Eliminar Productos Seleccionados</asp:LinkButton>
+            <asp:LinkButton ID="lbtnEliminarProdSel" runat="server" OnClick="lbtnEliminarProdSel_Click">Eliminar Productos Seleccionados</asp:LinkButton>
+            &nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lbl_Mensaje" runat="server"></asp:Label>
             <br />
 &nbsp;&nbsp;
             <br />

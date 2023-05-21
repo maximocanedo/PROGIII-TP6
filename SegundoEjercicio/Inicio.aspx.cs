@@ -10,5 +10,12 @@ namespace TrabajoPractico6.SegundoEjercicio {
         protected void Page_Load(object sender, EventArgs e) {
 
         }
+
+        protected void lbtnEliminarProdSel_Click(object sender, EventArgs e)
+        {
+            Session["ProductosSeleccionados"] = null;
+            lbl_Mensaje.Text = "Los productos seleccionados se han eliminado correctamente";
+            
+        }
     }
 }
