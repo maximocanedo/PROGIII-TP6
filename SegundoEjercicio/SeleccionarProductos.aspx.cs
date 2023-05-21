@@ -9,21 +9,19 @@ using System.Data;
 
 namespace TrabajoPractico6.SegundoEjercicio {
     public partial class SeleccionarProductos : System.Web.UI.Page {
-        protected void cargarGridView()
-        {
+        protected const string TablaProductosSeleccionados = "ProductosSeleccionados";
+        protected void cargarGridView() {
             Response productos = Producto.GetProductsForSecondTask();
-            if(productos.ObjectReturned != null)
-            {
+            if (productos.ObjectReturned != null) {
                 gvProductos.DataSource = productos.ObjectReturned;
                 gvProductos.DataBind();
             }
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack)
-            {
+            if (!IsPostBack) {
                 cargarGridView();
-                
+
             }
         }
 
@@ -41,52 +39,47 @@ namespace TrabajoPractico6.SegundoEjercicio {
         }
         *///----------------------------FUNCION DE OLI----------------------
 
-        protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-      
+        protected void gvProductos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e) {
+
             string s_IDProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProducto")).Text;
             string s_NombreProducto = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_NombreProducto")).Text;
             string s_IDProveedor = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_IDProveedor")).Text;
             string s_PrecioUnitario = ((Label)gvProductos.Rows[e.NewSelectedIndex].FindControl("lbl_PrecioUnitario")).Text;
 
-            
-            if(Session["ProductosSeleccionados"]==null)//SI LA VARIABLE SESSION NO EXISTE, SE CREA
-            {
+
+            if (Session[TablaProductosSeleccionados] == null) {
                 //INICIALIZACION DEL DATATABLE Y SESSION
                 DataTable dt = new DataTable();
-                dt.Columns.Add("IDProducto", typeof(string));
-                dt.Columns.Add("NombreProducto", typeof(string));
-                dt.Columns.Add("IDProveedor", typeof(string));
-                dt.Columns.Add("PrecioUnitario", typeof(string));
-                Session["ProductosSeleccionados"] = dt;
+                dt.Columns.Add(Producto.Columns.Id, typeof(string));
+                dt.Columns.Add(Producto.Columns.Nombre, typeof(string));
+                dt.Columns.Add(Producto.Columns.IdProveedor, typeof(string));
+                dt.Columns.Add(Producto.Columns.PrecioUnitario, typeof(string));
+                Session[TablaProductosSeleccionados] = dt;
             }
-            DataTable dtProductosSel = (DataTable)Session["ProductosSeleccionados"];
+            DataTable dtProductosSel = (DataTable)Session[TablaProductosSeleccionados];
             //VERIFICACION DE PRODUCTO REPETIDO
             bool productoExistente = false;
-            foreach (DataRow row in dtProductosSel.Rows)
-             {
-               if (row["IDProducto"].ToString() == s_IDProducto)
-               {
-                 productoExistente = true;
-                 break;
-               }
-             }
+            foreach (DataRow row in dtProductosSel.Rows) {
+                if (row[Producto.Columns.Id].ToString() == s_IDProducto) {
+                    productoExistente = true;
+                    break;
+                }
+            }
             //SI NO SE REPITE, SE AGREGA
-            if (!productoExistente)
-            {
-               DataRow newRow = dtProductosSel.NewRow();
-               newRow["IDProducto"] = s_IDProducto;
-               newRow["NombreProducto"] = s_NombreProducto;
-               newRow["IDProveedor"] = s_IDProveedor;
-               newRow["PrecioUnitario"] = s_PrecioUnitario;
-               dtProductosSel.Rows.Add(newRow);
+            if (!productoExistente) {
+                DataRow newRow = dtProductosSel.NewRow();
+                newRow[Producto.Columns.Id] = s_IDProducto;
+                newRow[Producto.Columns.Nombre] = s_NombreProducto;
+                newRow[Producto.Columns.IdProveedor] = s_IDProveedor;
+                newRow[Producto.Columns.PrecioUnitario] = s_PrecioUnitario;
+                dtProductosSel.Rows.Add(newRow);
 
                 //CARGAR TABLA ACTUALIZADA A LA VARIABLE SESSION
-                Session["ProductosSeleccionados"] = dtProductosSel;
+                Session[TablaProductosSeleccionados] = dtProductosSel;
                 lblProductosAgregados.Text += "</br>" + "-" + s_NombreProducto;
             }
-            
-            
+
+
             //------------------------------------------------------CODIGO DE OLI------------------------------------
             /*
             // Voy listando en el Label los productos que el usuario seleccione:
@@ -110,8 +103,7 @@ namespace TrabajoPractico6.SegundoEjercicio {
             //------------------------------------------------------------------------------------------------------
         }
 
-        protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
+        protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             gvProductos.PageIndex = e.NewPageIndex;
             cargarGridView();
         }
