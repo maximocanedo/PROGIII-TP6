@@ -58,13 +58,15 @@ namespace TrabajoPractico6.SegundoEjercicio {
             }
             DataTable dtProductosSel = (DataTable)Session[TablaProductosSeleccionados];
             //VERIFICACION DE PRODUCTO REPETIDO
-            bool productoExistente = false;
+            /*bool productoExistente = false;
             foreach (DataRow row in dtProductosSel.Rows) {
                 if (row[Producto.Columns.Id].ToString() == s_IDProducto) {
                     productoExistente = true;
                     break;
                 }
-            }
+            }*/
+            bool productoExistente = dtProductosSel.AsEnumerable()
+                .Any(row => row.Field<string>(Producto.Columns.Id) == s_IDProducto);
             //SI NO SE REPITE, SE AGREGA
             if (!productoExistente) {
                 DataRow newRow = dtProductosSel.NewRow();
