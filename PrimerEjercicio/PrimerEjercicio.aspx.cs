@@ -39,7 +39,11 @@ namespace TrabajoPractico6.PrimerEjercicio {
             string S_ID = ((Label)GrdProducto.Rows[e.RowIndex].FindControl("LBL_ID")).Text;
             Producto pro = new Producto();
             pro.Id = Convert.ToInt32(S_ID);
-            pro.PermanentlyDeleteFromDatabase();
+            Response resultado = pro.PermanentlyDeleteFromDatabase();
+            ShowSnackbar(resultado.ErrorFound
+                    ? $"Error al intentar eliminar. {resultado.Details}"
+                    : "Se eliminó correctamente el registro. "
+                );
             CargarGridview();
         }
 
