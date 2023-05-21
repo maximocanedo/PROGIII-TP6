@@ -9,6 +9,10 @@ using System.Data;
 
 namespace TrabajoPractico6.SegundoEjercicio {
     public partial class SeleccionarProductos : System.Web.UI.Page {
+        public static void ShowSnackbar(string mensaje) {
+            string script = "MostrarMensaje('" + mensaje + "');";
+            ScriptManager.RegisterStartupScript(HttpContext.Current.CurrentHandler as Page, typeof(Page), "MostrarMensaje", script, true);
+        }
         protected const string TablaProductosSeleccionados = "ProductosSeleccionados";
         protected void cargarGridView() {
             Response productos = Producto.GetProductsForSecondTask();
@@ -56,7 +60,7 @@ namespace TrabajoPractico6.SegundoEjercicio {
 
                 //CARGAR TABLA ACTUALIZADA A LA VARIABLE SESSION
                 Session[TablaProductosSeleccionados] = dtProductosSel;
-                lblProductosAgregados.Text += $"<li>{s_NombreProducto}</li>";
+                ShowSnackbar($"Seleccionado: {s_NombreProducto}");
             }
         }
 

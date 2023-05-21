@@ -41,9 +41,12 @@ class Header {
 }
 
 window.MostrarMensaje = (mensaje) => {
-    window.snackbar = new mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
-    window.snackbar.labelText = mensaje;
-    window.snackbar.open();
+    const toastLiveExample = document.getElementById('liveToast');
+    document.querySelector(".toast-body").innerText = mensaje;
+
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+
+    toastBootstrap.show();
 };
 window.onload = (() => {
     let header = new Header({
@@ -59,22 +62,5 @@ window.onload = (() => {
         ]
     });
     header.putOnPage();
-    // Instantiate all Textfields
-    document.querySelectorAll('.mdc-text-field').forEach(element => {
-        mdc.textField.MDCTextField.attachTo(element);
-    });
-    // MDCButton
-    document.querySelectorAll('.mdc-button').forEach(element => {
-        let text = element.innerText;
-        let ripple = document.createElement("span");
-        ripple.classList.add("mdc-button__ripple");
-        element.append(ripple);
-        mdc.ripple.MDCRipple.attachTo(element);
-    });
-    window.snackbar = new mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
-    let input = document.querySelector('#tbMsj');
-    input.addEventListener('change', () => {
-        MostrarMensaje(input.value);
-    });
-    /**/
+
 });

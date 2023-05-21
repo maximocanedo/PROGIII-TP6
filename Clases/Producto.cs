@@ -47,7 +47,7 @@ namespace TrabajoPractico6.Clases {
             Suspendido = (bool)(row[Columns.Suspendido] ?? Suspendido);
             return (source != null && row != null);
         }
-        
+
         /// <summary>
         /// Devuelve los datos del Producto en forma de DataRow (Fila de una tabla DataTable)
         /// </summary>
